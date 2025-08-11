@@ -8,16 +8,16 @@ export default function ConsumerLanding() {
   const [sortBy, setSortBy] = useState('rating') // Default sort by rating
   return (
     <main className="landing">
-      <div className="container">
-        <section className="hero">
-          <div className="hero-content">
-            <h2>Weekend deals: up to 25% off</h2>
-            <p>Top-rated cameras, tools, and mobility gear for less.</p>
-            <a className="btn" href="#deals">Shop deals</a>
-          </div>
-        </section>
+      <section className="hero full-width-container">
+        <div className="container-inner">
+          <h2>Weekend deals: up to 25% off</h2>
+          <p>Top-rated cameras, tools, and mobility gear for less.</p>
+          <a className="btn" href="#deals">Shop deals</a>
+        </div>
+      </section>
 
-        <nav className="topnav">
+      <nav className="topnav full-width-container">
+        <div className="container-inner">
           <div className="nav-left">
             <Link to="/consumer" className="icon-btn" aria-label="Home">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -42,9 +42,11 @@ export default function ConsumerLanding() {
               Profile
             </Link>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        <div className="category-menu container">
+      <div className="category-menu full-width-container">
+        <div className="container-inner">
           <button type="button" className="category-btn active">All</button>
           <button type="button" className="category-btn">Cameras</button>
           <button type="button" className="category-btn">Drones</button>
@@ -52,8 +54,10 @@ export default function ConsumerLanding() {
           <button type="button" className="category-btn">Action Cams</button>
           <button type="button" className="category-btn">Mobility</button>
         </div>
+      </div>
 
-        <div className="product-controls container">
+      <div className="container">
+        <div className="product-controls">
           <input
             type="text"
             placeholder="Search products..."
@@ -133,5 +137,3 @@ export default function ConsumerLanding() {
     </main>
   )
 }
-
-
