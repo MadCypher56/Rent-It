@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
+import '../App.css' // Import App.css for shared styles and animations
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Enter a valid email'),
@@ -28,45 +29,42 @@ export default function Login() {
     // Consumer: email consumer@example.com / password: password123
     // Lender: handled on /lender/login for now
     if (values.email === 'consumer@example.com' && values.password === 'password123') {
-      window.location.assign('/consumer')
+      window.location.assign('/consumer-landing') // Changed to consumer-landing
       return
     }
     setServerMessage({ type: 'error', text: 'Invalid credentials for consumer. Try consumer@example.com / password123' })
   }
 
   return (
-    <main className="landing">
-      <div className="container">
-        <header className="brand" style={{ marginBottom: 20 }}>
-          <div className="logo-circle">R</div>
-          <div>
-            <h1 className="title">Log in</h1>
-            <p className="subtitle">Welcome back. Access your rentals and dashboard.</p>
-          </div>
+    <div className="login-container fade-in">
+      <div className="login-card slide-down">
+        <header className="login-header">
+          <h1 className="login-title">Welcome Back</h1>
+          <p className="login-subtitle">Access your rentals and dashboard.</p>
         </header>
 
-        <form className="form-card" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="form-field">
-            <label className="form-label" htmlFor="email">Email</label>
-            <input id="email" type="email" className="input" placeholder="you@example.com" {...register('email')} />
-            {errors.email && <div className="error">{errors.email.message}</div>}
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" {...register('email')} className="form-input" />
+            {errors.email && <div className="error-message">{errors.email.message}</div>}
           </div>
 
-          <div className="form-field">
-            <label className="form-label" htmlFor="password">Password</label>
-            <input id="password" type="password" className="input" placeholder="Your password" {...register('password')} />
-            {errors.password && <div className="error">{errors.password.message}</div>}
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" placeholder="Your password" {...register('password')} className="form-input" />
+            {errors.password && <div className="error-message">{errors.password.message}</div>}
           </div>
 
-          <button className="btn" type="submit" disabled={isSubmitting}>
+          <button type="submit" disabled={isSubmitting} className="login-btn primary-btn">
             {isSubmitting ? 'Signing in…' : 'Sign in'}
           </button>
 
           {serverMessage && (
-            <div className={`banner ${serverMessage.type}`}>{serverMessage.text}</div>
+            <div className={`server-message ${serverMessage.type}`}>{serverMessage.text}</div>
           )}
 
-          <div className="form-footnote">
+          <div className="login-footer-links">
             <span>New here? </span>
             <Link to="/signup" className="link">Create a consumer account</Link>
             <span> or </span>
@@ -74,8 +72,6 @@ export default function Login() {
           </div>
         </form>
       </div>
-    </main>
+    </div>
   )
 }
-
-

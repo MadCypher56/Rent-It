@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
+import '../App.css' // Import App.css for shared styles and animations
 
 const lenderSchema = z.object({
   businessName: z.string().min(2, 'Business name is required'),
@@ -27,67 +28,62 @@ export default function RegisterLender() {
   }
 
   return (
-    <main className="landing">
-      <div className="container">
-        <header className="brand" style={{ marginBottom: 20 }}>
-          <div className="logo-circle">R</div>
-          <div>
-            <h1 className="title">Register as Lender</h1>
-            <p className="subtitle">List your items and manage rentals.</p>
-          </div>
+    <div className="register-lender-container fade-in">
+      <div className="register-lender-card slide-down">
+        <header className="register-lender-header">
+          <h1 className="register-lender-title">Register as Lender</h1>
+          <p className="register-lender-subtitle">List your items and manage rentals.</p>
         </header>
 
-        <form className="form-card" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="grid-2">
-            <div className="form-field">
-              <label className="form-label" htmlFor="businessName">Business name</label>
-              <input id="businessName" className="input" placeholder="Acme Rentals" {...register('businessName')} />
-              {errors.businessName && <div className="error">{errors.businessName.message}</div>}
+        <form className="register-lender-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="businessName">Business name</label>
+              <input id="businessName" placeholder="Acme Rentals" {...register('businessName')} className="form-input" />
+              {errors.businessName && <div className="error-message">{errors.businessName.message}</div>}
             </div>
 
-            <div className="form-field">
-              <label className="form-label" htmlFor="contactName">Contact name</label>
-              <input id="contactName" className="input" placeholder="Jane Doe" {...register('contactName')} />
-              {errors.contactName && <div className="error">{errors.contactName.message}</div>}
-            </div>
-          </div>
-
-          <div className="grid-2">
-            <div className="form-field">
-              <label className="form-label" htmlFor="email">Email</label>
-              <input id="email" type="email" className="input" placeholder="you@business.com" {...register('email')} />
-              {errors.email && <div className="error">{errors.email.message}</div>}
-            </div>
-
-            <div className="form-field">
-              <label className="form-label" htmlFor="phone">Phone</label>
-              <input id="phone" type="tel" className="input" placeholder="+1 555 123 4567" {...register('phone')} />
-              {errors.phone && <div className="error">{errors.phone.message}</div>}
+            <div className="form-group">
+              <label htmlFor="contactName">Contact name</label>
+              <input id="contactName" placeholder="Jane Doe" {...register('contactName')} className="form-input" />
+              {errors.contactName && <div className="error-message">{errors.contactName.message}</div>}
             </div>
           </div>
 
-          <div className="form-field">
-            <label className="form-label" htmlFor="password">Password</label>
-            <input id="password" type="password" className="input" placeholder="Create a strong password" {...register('password')} />
-            {errors.password && <div className="error">{errors.password.message}</div>}
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input id="email" type="email" placeholder="you@business.com" {...register('email')} className="form-input" />
+              {errors.email && <div className="error-message">{errors.email.message}</div>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone">Phone</label>
+              <input id="phone" type="tel" placeholder="+1 555 123 4567" {...register('phone')} className="form-input" />
+              {errors.phone && <div className="error-message">{errors.phone.message}</div>}
+            </div>
           </div>
 
-          <button className="btn" type="submit" disabled={isSubmitting}>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" placeholder="Create a strong password" {...register('password')} className="form-input" />
+            {errors.password && <div className="error-message">{errors.password.message}</div>}
+          </div>
+
+          <button type="submit" disabled={isSubmitting} className="register-lender-btn primary-btn">
             {isSubmitting ? 'Creating account…' : 'Create account'}
           </button>
 
           {serverMessage && (
-            <div className={`banner ${serverMessage.type}`}>{serverMessage.text}</div>
+            <div className={`server-message ${serverMessage.type}`}>{serverMessage.text}</div>
           )}
 
-          <div className="form-footnote">
+          <div className="register-lender-footer-links">
             <span>Already a Lender?, </span>
             <Link to="/lender/login" className="link">Log-in</Link>
           </div>
         </form>
       </div>
-    </main>
+    </div>
   )
 }
-
-

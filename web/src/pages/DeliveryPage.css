@@ -1,0 +1,259 @@
+/* DeliveryPage.css */
+
+.delivery-page {
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.delivery-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid black; /* Hand-drawn style border */
+  border-radius: 15px; /* Soft rounded corners */
+  background-color: #fff;
+  box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75); /* Hand-drawn shadow */
+}
+
+.breadcrumb-nav {
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.breadcrumb-text {
+  font-family: 'Permanent Marker', cursive; /* Playful hand-drawn font */
+  font-size: 1.2em;
+  color: #555;
+}
+
+.delivery-layout {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  min-width: 300px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+}
+
+.left-column h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8em;
+  color: blue;
+  margin-bottom: 20px;
+  border-bottom: 2px dashed black;
+  padding-bottom: 10px;
+}
+
+.address-textarea {
+  width: calc(100% - 24px); /* Account for padding */
+  padding: 12px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1em;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+  margin-bottom: 20px;
+  resize: vertical;
+}
+
+.toggle-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.toggle-switch-label input[type="checkbox"] {
+  /* Custom toggle switch styling */
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.toggle-switch-label input[type="checkbox"]:checked {
+  background-color: #2196F3;
+}
+
+.toggle-switch-label input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle-switch-label input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+.delivery-method-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1em;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+  margin-bottom: 20px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Order Summary Box (reusing styles from PaymentPage.css where applicable) */
+.summary-box {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+}
+
+.summary-title {
+  font-family: 'Permanent Marker', cursive;
+  color: blue;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.horizontal-separator {
+  border-top: 2px solid red;
+  margin: 15px 0;
+}
+
+.total-line {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Coupon Input Section (reusing styles from PaymentPage.css) */
+.coupon-input-section {
+  margin-top: 30px;
+  border-top: 2px dashed black;
+  padding-top: 20px;
+}
+
+.coupon-input-section label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.1em;
+}
+
+.coupon-input-group {
+  display: flex;
+}
+
+.coupon-input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid black;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1em;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+}
+
+.apply-coupon-button {
+  padding: 12px 20px;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1em;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+  transition: all 0.1s ease-in-out;
+}
+
+.apply-coupon-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Buttons */
+.confirm-button {
+  width: 100%;
+  padding: 15px;
+  background-color: lightgreen;
+  color: black;
+  border: 2px solid black;
+  border-radius: 15px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
+  transition: all 0.1s ease-in-out;
+}
+
+.confirm-button:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
+
+.back-to-cart-button {
+  display: block;
+  width: fit-content;
+  margin: 15px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1em;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+  transition: all 0.1s ease-in-out;
+}
+
+.back-to-cart-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .delivery-layout {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    min-width: unset;
+    width: 100%;
+  }
+}

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
+import '../App.css' // Import App.css for shared styles and animations
 
 const signupSchema = z.object({
   firstName: z.string().min(2, 'First name is required'),
@@ -30,60 +31,57 @@ export default function Signup() {
   }
 
   return (
-    <main className="landing">
-      <div className="container">
-        <header className="brand" style={{ marginBottom: 20 }}>
-          <div className="logo-circle">R</div>
-          <div>
-            <h1 className="title">Sign up</h1>
-            <p className="subtitle">Create your consumer account to browse and book items.</p>
-          </div>
+    <div className="signup-container fade-in">
+      <div className="signup-card slide-down">
+        <header className="signup-header">
+          <h1 className="signup-title">Create Account</h1>
+          <p className="signup-subtitle">Join Rent-It and start exploring items.</p>
         </header>
 
-        <form className="form-card" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="grid-2">
-            <div className="form-field">
-              <label className="form-label" htmlFor="firstName">First name</label>
-              <input id="firstName" className="input" placeholder="John" {...register('firstName')} />
-              {errors.firstName && <div className="error">{errors.firstName.message}</div>}
+        <form className="signup-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="firstName">First name</label>
+              <input id="firstName" placeholder="John" {...register('firstName')} className="form-input" />
+              {errors.firstName && <div className="error-message">{errors.firstName.message}</div>}
             </div>
 
-            <div className="form-field">
-              <label className="form-label" htmlFor="lastName">Last name</label>
-              <input id="lastName" className="input" placeholder="Doe" {...register('lastName')} />
-              {errors.lastName && <div className="error">{errors.lastName.message}</div>}
-            </div>
-          </div>
-
-          <div className="form-field">
-            <label className="form-label" htmlFor="email">Email</label>
-            <input id="email" type="email" className="input" placeholder="you@example.com" {...register('email')} />
-            {errors.email && <div className="error">{errors.email.message}</div>}
-          </div>
-
-          <div className="grid-2">
-            <div className="form-field">
-              <label className="form-label" htmlFor="password">Password</label>
-              <input id="password" type="password" className="input" placeholder="Create a password" {...register('password')} />
-              {errors.password && <div className="error">{errors.password.message}</div>}
-            </div>
-
-            <div className="form-field">
-              <label className="form-label" htmlFor="confirmPassword">Confirm password</label>
-              <input id="confirmPassword" type="password" className="input" placeholder="Repeat password" {...register('confirmPassword')} />
-              {errors.confirmPassword && <div className="error">{errors.confirmPassword.message}</div>}
+            <div className="form-group">
+              <label htmlFor="lastName">Last name</label>
+              <input id="lastName" placeholder="Doe" {...register('lastName')} className="form-input" />
+              {errors.lastName && <div className="error-message">{errors.lastName.message}</div>}
             </div>
           </div>
 
-          <button className="btn" type="submit" disabled={isSubmitting}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" {...register('email')} className="form-input" />
+            {errors.email && <div className="error-message">{errors.email.message}</div>}
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input id="password" type="password" placeholder="Create a password" {...register('password')} className="form-input" />
+              {errors.password && <div className="error-message">{errors.password.message}</div>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm password</label>
+              <input id="confirmPassword" type="password" placeholder="Repeat password" {...register('confirmPassword')} className="form-input" />
+              {errors.confirmPassword && <div className="error-message">{errors.confirmPassword.message}</div>}
+            </div>
+          </div>
+
+          <button type="submit" disabled={isSubmitting} className="signup-btn primary-btn">
             {isSubmitting ? 'Creating account…' : 'Create account'}
           </button>
 
           {serverMessage && (
-            <div className={`banner ${serverMessage.type}`}>{serverMessage.text}</div>
+            <div className={`server-message ${serverMessage.type}`}>{serverMessage.text}</div>
           )}
 
-          <div className="form-footnote">
+          <div className="signup-footer-links">
             <span>Are you a lender? </span>
             <Link to="/register-lender" className="link">Register here</Link>
             <span> or </span>
@@ -91,8 +89,6 @@ export default function Signup() {
           </div>
         </form>
       </div>
-    </main>
+    </div>
   )
 }
-
-

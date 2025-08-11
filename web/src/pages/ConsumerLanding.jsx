@@ -1,18 +1,120 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect, Fragment } from 'react'
+import { motion } from 'framer-motion'
 import { products } from '../data/products.js'
+import './ConsumerLanding.css' // Import the new CSS file
 
 export default function ConsumerLanding() {
   const [view, setView] = useState('card') // 'card' | 'list'
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('rating') // Default sort by rating
+  const [loading, setLoading] = useState(true); // New loading state
+  const [showScroll, setShowScroll] = useState(false); // New scroll state
+
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6; // Changed to 6 products per page
+
+  // Calculate products for the current page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  useEffect(() => {
+    // Simulate a network request
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500); // Show loader for 1.5 seconds
+    return () => clearTimeout(timer);
+  }, []);
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  window.addEventListener('scroll', checkScrollTop);
+
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: -20 }
+  };
+
+  const pageTransition = {
+    type: "tween",
+    ease: "easeOut",
+    duration: 0.4
+  };
+
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontSize: '2em',
+        color: '#333'
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <main className="landing">
+    <Fragment>
+    <motion.main
+      className="landing"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <section className="hero full-width-container">
         <div className="container-inner">
-          <h2>Weekend deals: up to 25% off</h2>
-          <p>Top-rated cameras, tools, and mobility gear for less.</p>
-          <a className="btn" href="#deals">Shop deals</a>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >Weekend deals: up to 25% off</motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >Top-rated cameras, tools, and mobility gear for less.</motion.p>
+          <motion.a
+            className="btn"
+            href="#deals"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >Shop deals</motion.a>
         </div>
       </section>
 
@@ -26,13 +128,13 @@ export default function ConsumerLanding() {
               <span>Home</span>
             </Link>
             <button type="button" className="text-btn">Wishlist</button>
-            <button type="button" className="icon-btn" aria-label="Cart">
+            <Link to="/add-to-cart" className="icon-btn" aria-label="Cart">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.5L5 3H2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="10" cy="20" r="1.4" fill="currentColor"/>
                 <circle cx="17" cy="20" r="1.4" fill="currentColor"/>
               </svg>
-            </button>
+            </Link>
           </div>
           <div className="nav-right">
             <Link to="/login" className="text-btn">
@@ -111,29 +213,100 @@ export default function ConsumerLanding() {
           </div>
         </div>
 
-        <section className={`grid-products ${view === 'list' ? 'list' : ''}`} id="deals">
-          {products.map((p) => (
-            <Link to={`/product/${p.id}`} key={p.id} className={`product-card cat-${p.category?.toLowerCase().replace(/\s+/g,'-')}`}>
-              {p.onSale && <div className="badge sale">SALE</div>}
-              <div className="thumb">
-                <img src={p.imageUrl} alt={p.title} loading="lazy" />
-              </div>
-              <div className="meta">
-                <h3 className="p-title">{p.title}</h3>
-                <p className="p-sub">{p.category} • <span className="rating">★ {p.rating.toFixed(1)}</span> ({p.reviews})</p>
-                <div className="p-bottom">
-                  <div>
-                    <span className="p-price">${p.pricePerDay}/day</span>
-                    {p.oldPricePerDay > p.pricePerDay && (
-                      <span className="p-old">${p.oldPricePerDay}/day</span>
-                    )}
+        <section id="deals">
+          <motion.div
+            className={`grid-products ${view === 'list' ? 'list' : ''}`}
+            variants={{
+              hidden: { opacity: 1 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
+            }}
+            initial="hidden"
+            animate="visible"
+          >
+            {currentProducts.map((p) => (
+              <motion.div
+                key={p.id}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to={`/product/${p.id}`} className={`product-card cat-${p.category?.toLowerCase().replace(/\s+/g,'-')}`}>
+                  {p.onSale && <div className="badge sale">SALE</div>}
+                  <div className="thumb">
+                    <img src={p.imageUrl} alt={p.title} loading="lazy" />
                   </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+                  <div className="meta">
+                    <h3 className="p-title">{p.title}</h3>
+                    <p className="p-sub">{p.category} • <span className="rating">★ {p.rating.toFixed(1)}</span> ({p.reviews})</p>
+                    <div className="p-bottom">
+                      <div>
+                        <span className="p-price">${p.pricePerDay}/day</span>
+                        {p.oldPricePerDay > p.pricePerDay && (
+                          <span className="p-old">${p.oldPricePerDay}/day</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </section>
+
+        <div className="pagination">
+          <button
+            onClick={prevPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={currentPage === index + 1 ? 'active' : ''}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={nextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
-    </main>
+    </motion.main>
+      {showScroll && (
+        <motion.button
+          onClick={scrollTop}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            fontSize: '1.5em',
+            cursor: 'pointer',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+            zIndex: 1000
+          }}
+        >
+          ↑
+        </motion.button>
+      )}
+    </Fragment>
   )
 }
