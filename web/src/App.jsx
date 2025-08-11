@@ -5,6 +5,7 @@ import RegisterLender from './pages/RegisterLender.jsx'
 import Signup from './pages/Signup.jsx'
 import LenderLogin from './pages/LenderLogin.jsx'
 import ConsumerLanding from './pages/ConsumerLanding.jsx'
+import ProductDetail from './pages/ProductDetail.jsx' // Import ProductDetail
 
 function Landing() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/lender/login" element={<LenderLogin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/consumer" element={<ConsumerLanding />} />
+        <Route path="/product/:productId" element={<ProductDetail />} /> {/* New Route */}
       </Routes>
     </BrowserRouter>
   )
