@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 import './App.css'
 import Login from './pages/Login.jsx'
 import RegisterLender from './pages/RegisterLender.jsx'
@@ -11,6 +12,9 @@ import OrderOverview from './pages/OrderOverview.jsx';
 import AddToCartPage from './pages/AddToCartPage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
 import DeliveryPage from './pages/DeliveryPage.jsx'; // Import DeliveryPage
+import LenderDashboard from './pages/LenderDashboard.jsx';
+import LenderProfilePage from './pages/LenderProfilePage.jsx';
+import MyListings from './pages/MyListings.jsx';
 
 function Placeholder({ heading, note }) {
   return (
@@ -22,25 +26,163 @@ function Placeholder({ heading, note }) {
   )
 }
 
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode='wait'>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LandingPage />
+          </motion.div>
+        } />
+        <Route path="/login" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Login />
+          </motion.div>
+        } />
+        <Route path="/register-lender" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <RegisterLender />
+          </motion.div>
+        } />
+        <Route path="/lender/login" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LenderLogin />
+          </motion.div>
+        } />
+        <Route path="/signup" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Signup />
+          </motion.div>
+        } />
+        <Route path="/consumer-landing" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ConsumerLanding />
+          </motion.div>
+        } />
+        <Route path="/product/:productId" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProductDetail />
+          </motion.div>
+        } />
+        <Route path="/order-overview" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <OrderOverview />
+          </motion.div>
+        } />
+        <Route path="/add-to-cart" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AddToCartPage />
+          </motion.div>
+        } />
+        <Route path="/delivery" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <DeliveryPage />
+          </motion.div>
+        } />
+        <Route path="/payment" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PaymentPage />
+          </motion.div>
+        } />
+        <Route path="/lender/dashboard" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LenderDashboard />
+          </motion.div>
+        } />
+        <Route path="/lender/profile" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LenderProfilePage />
+          </motion.div>
+        } />
+        <Route path="/my-listings" element={
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <MyListings />
+          </motion.div>
+        } />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register-lender" element={<RegisterLender />} />
-        <Route path="/lender/login" element={<LenderLogin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/consumer-landing" element={<ConsumerLanding />} />
-        <Route path="/product/:productId" element={<ProductDetail />} /> {/* New Route */}
-        <Route path="/order-overview" element={<OrderOverview />} />
-        <Route path="/add-to-cart" element={<AddToCartPage />} />
-        <Route path="/delivery" element={<DeliveryPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
-      </Routes>
+      <AnimatedRoutes />
     </BrowserRouter>
-  )
+  );
 }
 
 export default App

@@ -1,0 +1,142 @@
+/* AddProduct.css */
+
+:root {
+  --primary-blue: #0056b3;
+  --secondary-gold: #FFD700;
+  --accent-teal: #008080;
+  --text-dark: #333;
+  --text-light: #f8f8f8;
+  --bg-light: #f4f7f6;
+  --card-bg: #ffffff;
+  --border-light: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
+.add-product-form-container {
+  max-width: 700px; /* Adjusted for modal size */
+  width: 100%;
+  /* No background, shadow, padding here as it's handled by modal-content */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.add-product-form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-blue);
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.add-product-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1; /* Span across both columns */
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1.05em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea {
+  padding: 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--bg-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.2);
+  background-color: var(--card-bg);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn-primary {
+  grid-column: 1 / -1; /* Span across both columns */
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .add-product-form-container {
+    padding: 0; /* No padding as modal-content handles it */
+  }
+
+  .add-product-form-container h1 {
+    font-size: 2.2em;
+  }
+
+  .add-product-form {
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 20px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 20px;
+    font-size: 1.1em;
+  }
+}

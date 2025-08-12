@@ -1,16 +1,16 @@
 :root {
-  --primary-blue: #0056b3;
-  --secondary-gold: #FFD700;
-  --accent-teal: #008080;
-  --text-dark: #333;
-  --text-light: #f8f8f8;
-  --bg-light: #f4f7f6;
-  --bg-gradient-start: #e0f2f7;
-  --bg-gradient-end: #c2e0e8;
-  --card-bg: #ffffff;
-  --border-light: #e0e0e0;
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --primary-blue: var(--primary);
+  --secondary-gold: var(--secondary);
+  --accent-teal: var(--primary-600);
+  --text-dark: var(--text);
+  --text-light: var(--text-light);
+  --bg-light: var(--bg);
+  --bg-gradient-start: var(--bg);
+  --bg-gradient-end: var(--bg);
+  --card-bg: var(--surface);
+  --border-light: var(--hand-drawn-border);
+  --shadow-light: var(--hand-drawn-shadow-sm);
+  --shadow-medium: var(--hand-drawn-shadow);
 }
 
 html, body, #root {
@@ -18,14 +18,7 @@ html, body, #root {
   color: var(--text-dark);
 }
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  background: var(--bg-light);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-}
+
 
 .landing {
   display: grid;
@@ -38,6 +31,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  background-color: var(--card-bg);
+  box-shadow: var(--hand-drawn-shadow);
 }
 
 .full-width-container {
@@ -56,6 +53,57 @@ body {
   background: var(--card-bg);
   padding: 24px 0;
   margin-bottom: 16px;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  box-shadow: var(--hand-drawn-shadow);
+}
+
+/* Top navigation for consumer */
+.topnav.full-width-container {
+  background: var(--primary);
+  color: var(--text-light);
+  padding: 0;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  box-shadow: var(--hand-drawn-shadow);
+}
+
+
+
+.full-width-container {
+  width: 100%;
+}
+
+.container-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+
+
+
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  background-color: var(--card-bg);
+  box-shadow: var(--hand-drawn-shadow);
+}
+
+/* Hero Banner */
+.hero.full-width-container {
+  background: var(--card-bg);
+  padding: 24px 0;
+  margin-bottom: 16px;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  box-shadow: var(--hand-drawn-shadow);
 }
 
 /* Top navigation for consumer */
@@ -63,6 +111,9 @@ body {
   background: var(--primary-blue);
   color: var(--text-light);
   padding: 0;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
+  box-shadow: var(--hand-drawn-shadow);
 }
 
 .topnav .container-inner {
@@ -82,25 +133,31 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text-light);
+  padding: 8px 16px;
+  border-radius: var(--hand-drawn-radius-sm);
+  border: var(--hand-drawn-border);
+  background: var(--card-bg);
+  color: var(--text-dark);
   text-decoration: none;
   cursor: pointer;
-  transition: background 120ms ease, box-shadow 120ms ease;
+  transition: all 0.1s ease-in-out;
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .icon-btn:hover, .text-btn:hover {
-  background: rgba(255,255,255,0.1);
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.icon-btn:active, .text-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 /* Category Menu */
-.category-menu.full-width-container {
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--border-light);
+.category-menu {
   padding: 0;
+  margin-bottom: 16px; /* Add some space below the category menu */
 }
 
 .category-menu .container-inner {
@@ -112,26 +169,26 @@ body {
 
 .category-btn {
   padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
+  border-radius: var(--hand-drawn-radius-sm);
+  border: var(--hand-drawn-border);
   background: var(--bg-light);
   color: var(--text-dark);
   font-weight: 600;
   cursor: pointer;
-  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+  transition: all 0.1s ease-in-out;
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .category-btn:hover {
-  background: var(--card-bg);
-  border-color: var(--primary-blue);
-  box-shadow: var(--shadow-light);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .category-btn.active {
-  background: var(--primary-blue);
-  color: var(--text-light);
-  border-color: var(--primary-blue);
-  box-shadow: var(--shadow-medium);
+  background: lightpink;
+  color: black;
+  border-color: black;
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 /* Product Controls */
@@ -142,17 +199,18 @@ body {
   margin-bottom: 24px;
   padding: 16px;
   background: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-light);
+  border-radius: var(--hand-drawn-radius);
+  border: var(--hand-drawn-border);
+  box-shadow: var(--hand-drawn-shadow);
 }
 
 .search-input {
   flex-grow: 1;
   margin-right: 16px;
   padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
+  border-radius: var(--hand-drawn-radius-sm);
+  border: var(--hand-drawn-border);
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .sort-by-container {
@@ -164,8 +222,9 @@ body {
 
 .sort-by-select {
   padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
+  border-radius: var(--hand-drawn-radius-sm);
+  border: var(--hand-drawn-border);
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .view-controls {
@@ -175,17 +234,19 @@ body {
 
 .toggle-btn {
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
+  border-radius: var(--hand-drawn-radius-sm);
+  border: var(--hand-drawn-border);
   background: var(--primary-blue);
   color: var(--text-light);
   cursor: pointer;
+  box-shadow: var(--hand-drawn-shadow-sm);
+  transition: all 0.1s ease-in-out;
 }
 
 .toggle-btn.active {
-  background: var(--bg-light);
-  color: var(--text-dark);
-  border-color: var(--border-light);
+  background: lightpink;
+  color: black;
+  border-color: black;
 }
 
 /* Product Grid */
@@ -198,19 +259,20 @@ body {
 .product-card {
   position: relative;
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: var(--hand-drawn-radius);
   overflow: hidden;
-  box-shadow: var(--shadow-light);
+  box-shadow: var(--hand-drawn-shadow);
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.1s ease-in-out;
+  border: var(--hand-drawn-border);
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-medium);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .thumb {
@@ -235,9 +297,10 @@ body {
   font-weight: 800;
   font-size: 12px;
   padding: 4px 8px;
-  border-radius: 999px;
-  box-shadow: var(--shadow-light);
+  border-radius: var(--hand-drawn-radius-sm);
+  box-shadow: var(--hand-drawn-shadow-sm);
   letter-spacing: 0.4px;
+  border: var(--hand-drawn-border);
 }
 
 .meta {
@@ -293,7 +356,6 @@ body {
   background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
   color: var(--text-dark);
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   padding: 0;
 }
@@ -305,25 +367,27 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+  background: var(--surface); /* Use surface for nav background */
   backdrop-filter: blur(5px); /* Frosted glass effect */
   position: fixed; /* Keep it at the top */
   top: 0;
   left: 0;
   z-index: 1000; /* Ensure it's above other content */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--hand-drawn-shadow-sm);
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
 }
 
 .nav-brand .app-title-small {
   font-size: 1.8em;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .nav-brand .app-title-small:hover {
-  color: #004494;
+  color: var(--primary-600);
 }
 
 .nav-links {
@@ -333,29 +397,35 @@ body {
 }
 
 .nav-link {
-  color: var(--primary-blue);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1em;
   padding: 8px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: var(--hand-drawn-radius-sm);
+  transition: all 0.1s ease-in-out;
+  border: var(--hand-drawn-border);
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .nav-link:hover {
   background-color: rgba(0, 86, 179, 0.1); /* Light blue hover */
-  color: var(--primary-blue);
+  color: var(--primary);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .nav-link.primary-btn {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .nav-link.primary-btn:hover {
-  background-color: #004494;
-  color: var(--text-light);
+  background-color: var(--secondary-700);
+  color: var(--text-dark);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 /* Dropdown Styles */
@@ -366,52 +436,56 @@ body {
 
 .dropdown-toggle {
   background: none;
-  border: none;
+  border: var(--hand-drawn-border);
   cursor: pointer;
   padding: 8px 15px;
   font-size: 1.1em;
   font-weight: 600;
-  color: var(--primary-blue);
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Added transform transition */
-  display: flex; /* To align text and arrow */
+  color: var(--primary);
+  transition: all 0.1s ease-in-out;
+  display: flex;
   align-items: center;
-  gap: 5px; /* Space between text and arrow */
+  gap: 5px;
+  border-radius: var(--hand-drawn-radius-sm);
+  box-shadow: var(--hand-drawn-shadow-sm);
 }
 
 .dropdown-toggle:hover {
   background-color: rgba(0, 86, 179, 0.1);
-  border-radius: 5px;
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .dropdown-arrow {
-  font-size: 0.7em; /* Smaller arrow */
-  transition: transform 0.3s ease; /* Smooth rotation */
+  font-size: 0.7em;
+  transition: transform 0.3s ease;
 }
 
 .dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg); /* Rotate arrow on hover */
+  transform: rotate(180deg);
 }
 
 .dropdown-menu {
   position: absolute;
   background-color: var(--card-bg);
-  min-width: 180px; /* Increased width for better readability */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 180px;
+  box-shadow: var(--hand-drawn-shadow);
   z-index: 1;
-  border-radius: 8px;
+  border-radius: var(--hand-drawn-radius);
   overflow: hidden;
-  margin-top: 10px; /* Space below the toggle button */
+  margin-top: 10px;
   left: 50%;
-  transform: translateX(-50%) translateY(-10px); /* Start slightly above */
-  opacity: 0; /* Start invisible */
-  visibility: hidden; /* Hide from screen readers and events */
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease; /* Increased transition duration */
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  border: var(--hand-drawn-border);
 }
 
 .dropdown:hover .dropdown-menu {
-  opacity: 1; /* Fade in */
-  visibility: visible; /* Make visible */
-  transform: translateX(-50%) translateY(0); /* Slide down to final position */
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-item {
@@ -439,7 +513,7 @@ body {
 }
 
 .landing-header {
-  margin-top: 100px; /* Adjust for fixed nav bar */
+  margin-top: 100px;
   margin-bottom: 50px;
   padding: 20px;
 }
@@ -447,7 +521,7 @@ body {
 .app-title {
   font-size: 4.5em;
   margin-bottom: 15px;
-  color: var(--primary-blue);
+  color: var(--primary);
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
   font-weight: 700;
 }
@@ -463,7 +537,7 @@ body {
 .landing-main {
   flex-grow: 1;
   display: flex;
-  flex-direction: column; /* Changed to column for vertical stacking of sections */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -477,17 +551,17 @@ body {
   justify-content: center;
   max-width: 1200px;
   width: 100%;
-  margin-bottom: 60px; /* Space between value props and CTA */
+  margin-bottom: 60px;
 }
 
 .value-card {
   background: var(--card-bg);
-  border-radius: 15px;
+  border-radius: var(--hand-drawn-radius);
   padding: 40px;
-  width: 350px; /* Adjusted width for three cards in a row */
-  box-shadow: 0 10px 30px var(--shadow-medium);
-  border: 1px solid var(--border-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 350px;
+  box-shadow: var(--hand-drawn-shadow);
+  border: var(--hand-drawn-border);
+  transition: all 0.1s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -496,14 +570,14 @@ body {
 }
 
 .value-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .value-card h2 {
   font-size: 2em;
   margin-bottom: 20px;
-  color: var(--primary-blue);
+  color: var(--primary);
 }
 
 .value-card p {
@@ -515,18 +589,19 @@ body {
 .call-to-action {
   margin-top: 40px;
   padding: 40px;
-  background: var(--primary-blue);
-  color: var(--text-light);
-  border-radius: 15px;
-  box-shadow: 0 10px 30px var(--shadow-medium);
+  background: var(--secondary);
+  color: black;
+  border-radius: var(--hand-drawn-radius);
+  box-shadow: var(--hand-drawn-shadow);
   max-width: 800px;
   width: 100%;
+  border: var(--hand-drawn-border);
 }
 
 .call-to-action h2 {
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: var(--text-light);
+  color: black;
 }
 
 .call-to-action p {
@@ -545,23 +620,24 @@ body {
 .btn {
   display: inline-block;
   padding: 14px 30px;
-  border-radius: 8px;
+  border-radius: var(--hand-drawn-radius);
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease-in-out;
+  box-shadow: var(--hand-drawn-shadow);
+  border: var(--hand-drawn-border);
 }
 
 .primary-btn {
-  background-color: var(--secondary-gold);
-  color: var(--text-dark);
+  background-color: var(--primary);
+  color: var(--text-light);
 }
 
 .primary-btn:hover {
-  background-color: #e6c200;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-600);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .secondary-btn {
@@ -570,20 +646,21 @@ body {
 }
 
 .secondary-btn:hover {
-  background-color: #006666;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-600);
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .landing-footer {
-  margin-top: auto; /* Push footer to the bottom */
+  margin-top: auto;
   padding: 20px;
   font-size: 0.9em;
   color: #666;
   width: 100%;
-  background: rgba(255, 255, 255, 0.5); /* Light background for footer */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-}
+  background: var(--surface);
+  box-shadow: var(--hand-drawn-shadow-sm);
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius);
 
 /* Animations (adjusted for professional look) */
 @keyframes fadeIn {
@@ -650,18 +727,19 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  background: var(--bg);
   padding: 20px;
 }
 
 .login-card {
   background: var(--card-bg);
-  border-radius: 15px;
+  border-radius: var(--hand-drawn-radius);
   padding: 40px;
-  box-shadow: 0 10px 30px var(--shadow-medium);
+  box-shadow: var(--hand-drawn-shadow);
   width: 100%;
   max-width: 450px;
   text-align: center;
+  border: var(--hand-drawn-border);
 }
 
 .login-header {
@@ -670,13 +748,13 @@ body {
 
 .login-title {
   font-size: 2.5em;
-  color: var(--primary-blue);
+  color: var(--primary);
   margin-bottom: 10px;
 }
 
 .login-subtitle {
   font-size: 1.1em;
-  color: #666;
+  color: var(--muted);
 }
 
 .login-form {
@@ -699,483 +777,9 @@ body {
 .form-input {
   width: 100%;
   padding: 12px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
+  border: var(--hand-drawn-border);
+  border-radius: var(--hand-drawn-radius-sm);
   font-size: 1em;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
-}
-
-.error-message {
-  color: #D32F2F;
-  font-size: 0.9em;
-  margin-top: 5px;
-  text-align: left;
-}
-
-.login-btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.login-btn.primary-btn {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-}
-
-.login-btn.primary-btn:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.server-message {
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 20px;
-  font-size: 0.9em;
-}
-
-.server-message.error {
-  background-color: #ffebee;
-  color: #D32F2F;
-  border: 1px solid #D32F2F;
-}
-
-.login-footer-links {
-  margin-top: 30px;
-  font-size: 0.95em;
-  color: #555;
-}
-
-.login-footer-links .link {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.login-footer-links .link:hover {
-  color: #004494;
-  text-decoration: underline;
-}
-
-/* Signup Page Styles */
-.signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-  padding: 20px;
-}
-
-.signup-card {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 30px var(--shadow-medium);
-  width: 100%;
-  max-width: 600px; /* Wider for two-column layout */
-  text-align: center;
-}
-
-.signup-header {
-  margin-bottom: 30px;
-}
-
-.signup-title {
-  font-size: 2.5em;
-  color: var(--primary-blue);
-  margin-bottom: 10px;
-}
-
-.signup-subtitle {
-  font-size: 1.1em;
-  color: #666;
-}
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-row .form-group {
-  flex: 1;
-}
-
-.signup-btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.signup-btn.primary-btn {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-}
-
-.signup-btn.primary-btn:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.signup-footer-links {
-  margin-top: 30px;
-  font-size: 0.95em;
-  color: #555;
-}
-
-.signup-footer-links .link {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.signup-footer-links .link:hover {
-  color: #004494;
-  text-decoration: underline;
-}
-
-/* Register Lender Page Styles */
-.register-lender-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-  padding: 20px;
-}
-
-.register-lender-card {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 30px var(--shadow-medium);
-  width: 100%;
-  max-width: 600px; /* Wider for two-column layout */
-  text-align: center;
-}
-
-.register-lender-header {
-  margin-bottom: 30px;
-}
-
-.register-lender-title {
-  font-size: 2.5em;
-  color: var(--primary-blue);
-  margin-bottom: 10px;
-}
-
-.register-lender-subtitle {
-  font-size: 1.1em;
-  color: #666;
-}
-
-.register-lender-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.register-lender-btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.register-lender-btn.primary-btn {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-}
-
-.register-lender-btn.primary-btn:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.register-lender-footer-links {
-  margin-top: 30px;
-  font-size: 0.95em;
-  color: #555;
-}
-
-.register-lender-footer-links .link {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.register-lender-footer-links .link:hover {
-  color: #004494;
-  text-decoration: underline;
-}
-
-/* Lender Login Page Styles */
-.lender-login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-  padding: 20px;
-}
-
-.lender-login-card {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 30px var(--shadow-medium);
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
-}
-
-.lender-login-header {
-  margin-bottom: 30px;
-}
-
-.lender-login-title {
-  font-size: 2.5em;
-  color: var(--primary-blue);
-  margin-bottom: 10px;
-}
-
-.lender-login-subtitle {
-  font-size: 1.1em;
-  color: #666;
-}
-
-.lender-login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.lender-login-btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.lender-login-btn.primary-btn {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-}
-
-.lender-login-btn.primary-btn:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.lender-login-footer-links {
-  margin-top: 30px;
-  font-size: 0.95em;
-  color: #555;
-}
-
-.lender-login-footer-links .link {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.lender-login-footer-links .link:hover {
-  color: #004494;
-  text-decoration: underline;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .value-proposition {
-    gap: 20px;
-  }
-  .value-card {
-    width: 30%;
-    padding: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .top-nav {
-    flex-direction: column;
-    padding: 10px 20px;
-  }
-
-  .nav-brand {
-    margin-bottom: 10px;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .app-title {
-    font-size: 3.5em;
-  }
-
-  .app-slogan {
-    font-size: 1.3em;
-  }
-
-  .value-proposition {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .value-card {
-    width: 90%;
-    max-width: 400px;
-  }
-
-  .call-to-action {
-    padding: 30px;
-  }
-
-  .call-to-action h2 {
-    font-size: 2em;
-  }
-
-  .call-to-action p {
-    font-size: 1.1em;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-  }
-
-  .login-card {
-    padding: 30px;
-  }
-
-  .login-title {
-    font-size: 2em;
-  }
-
-  .signup-card {
-    padding: 30px;
-  }
-
-  .signup-title {
-    font-size: 2em;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .register-lender-card {
-    padding: 30px;
-  }
-
-  .register-lender-title {
-    font-size: 2em;
-  }
-
-  .lender-login-card {
-    padding: 30px;
-  }
-
-  .lender-login-title {
-    font-size: 2em;
-  }
-}
-
-@media (max-width: 480px) {
-  .app-title {
-    font-size: 2.8em;
-  }
-
-  .app-slogan {
-    font-size: 1.1em;
-  }
-
-  .value-card {
-    padding: 30px 20px;
-  }
-
-  .value-card h2 {
-    font-size: 1.6em;
-  }
-
-  .value-card p {
-    font-size: 1em;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: 1em;
-  }
-
-  .login-card {
-    padding: 20px;
-  }
-
-  .login-title {
-    font-size: 1.8em;
-  }
-
-  .signup-card {
-    padding: 20px;
-  }
-
-  .signup-title {
-    font-size: 1.8em;
-  }
-
-  .register-lender-card {
-    padding: 20px;
-  }
-
-  .register-lender-title {
-    font-size: 1.8em;
-  }
-
-  .lender-login-card {
-    padding: 20px;
-  }
-
-  .lender-login-title {
-    font-size: 1.8em;
-  }
+  transition: all 0.1s ease-in-out;
+  box-shadow: var(--hand-drawn-shadow-sm);
 }

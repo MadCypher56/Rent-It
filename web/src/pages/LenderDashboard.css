@@ -1,0 +1,298 @@
+/* LenderDashboard.css */
+
+/* Variables from App.css for consistency */
+:root {
+  --primary-blue: #0056b3;
+  --secondary-gold: #FFD700;
+  --accent-teal: #008080;
+  --text-dark: #333;
+  --text-light: #f8f8f8;
+  --bg-light: #f4f7f6;
+  --bg-gradient-start: #e0f2f7;
+  --bg-gradient-end: #c2e0e8;
+  --card-bg: #ffffff;
+  --border-light: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-container {
+  padding: 20px;
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  background-color: var(--card-bg);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.icon-square {
+  background-color: var(--primary-blue);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-square .icon {
+  color: var(--text-light);
+  width: 24px;
+  height: 24px;
+}
+
+.dashboard-nav-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-dark);
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-nav-button:hover {
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+}
+
+.avatar-circle {
+  background-color: var(--accent-teal);
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-circle .icon {
+  color: var(--text-light);
+  width: 24px;
+  height: 24px;
+}
+
+.profile-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.input-field {
+  padding: 12px 15px;
+  padding-right: 40px; /* Space for icon */
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dark);
+}
+
+.dashboard-stat-card {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  text-align: center;
+}
+
+.stat-title {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  margin-top: 20px;
+}
+
+/* Utility classes from App.css for flexbox and spacing */
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.md-flex-row {
+  flex-direction: row;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.gap-sm {
+  gap: 10px;
+}
+
+.gap-md {
+  gap: 20px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.md-w-auto {
+  width: auto;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: var(--accent-teal);
+  color: var(--text-light);
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #006666;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.md-grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Analytics Grid */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .analytics-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .dashboard-nav-button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .md-flex-row {
+    flex-direction: column;
+  }
+
+  .md-w-auto {
+    width: 100%;
+  }
+
+  .md-grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .md-grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.card-title {
+  font-size: 1.4em;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.dashboard-table th {
+  background-color: var(--bg-light);
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.dashboard-table tbody tr:last-child td {
+  border-bottom: none;
+}

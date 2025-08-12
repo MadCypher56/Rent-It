@@ -1,0 +1,120 @@
+/* LenderProfile.css */
+
+:root {
+  --primary-blue: #0056b3;
+  --text-dark: #333;
+  --card-bg: #ffffff;
+  --border-light: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --bg-light: #f4f7f6;
+}
+
+.lender-profile-page {
+  padding: 40px 20px;
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lender-profile-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-blue);
+  font-size: 2.8em;
+}
+
+.profile-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.profile-avatar svg {
+  width: 80px;
+  height: 80px;
+}
+
+.profile-details {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.profile-details p {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: var(--text-dark);
+}
+
+.profile-details p strong {
+  color: var(--primary-blue);
+}
+
+.profile-actions {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 20px;
+  }
+
+  .lender-profile-page h1 {
+    font-size: 2.2em;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-avatar svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-details {
+    font-size: 0.95em;
+  }
+}

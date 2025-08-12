@@ -49,12 +49,18 @@ export default function DeliveryPage() {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Breadcrumb Navigation */}
         <div className="breadcrumb-nav">
           <p className="breadcrumb-text">Review Order &gt; Delivery &gt; Payment</p>
         </div>
 
         <div className="container delivery-container">
+          <motion.button
+            className="btn"
+            onClick={() => navigate('/add-to-cart')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{ marginLeft: '20px', marginBottom: '20px' }}
+          >&lt; Back to Cart</motion.button>
           <div className="delivery-layout">
             {/* Left Column – Main Content */}
             <div className="left-column">
@@ -139,8 +145,12 @@ export default function DeliveryPage() {
                   </div>
                 </div>
 
-                <button className="confirm-button" onClick={handleConfirm}>Confirm</button>
-                <Link to="/add-to-cart" className="back-to-cart-button">&lt; back to Cart</Link>
+                <motion.button
+                  className="confirm-button"
+                  onClick={handleConfirm}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >Confirm</motion.button>
               </div>
             </div>
           </div>

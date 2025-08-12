@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom' // Import useNavigate
 import '../App.css' // Import App.css for shared styles and animations
 
 const lenderLoginSchema = z.object({
@@ -12,6 +12,7 @@ const lenderLoginSchema = z.object({
 
 export default function LenderLogin() {
   const [serverMessage, setServerMessage] = useState(null)
+  const navigate = useNavigate() // Initialize useNavigate
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(lenderLoginSchema),
@@ -23,7 +24,8 @@ export default function LenderLogin() {
     await new Promise((r) => setTimeout(r, 600))
     // Temporary lender mock: lender@example.com / password: strongpass
     if (values.email === 'lender@example.com' && values.password === 'strongpass') {
-      setServerMessage({ type: 'success', text: 'Lender logged in (mock). Dashboard coming soon.' })
+      setServerMessage({ type: 'success', text: 'Lender logged in (mock). Redirecting to dashboard...' })
+      navigate('/lender/dashboard') // Redirect to dashboard
       return
     }
     setServerMessage({ type: 'error', text: 'Invalid lender credentials. Try lender@example.com / strongpass' })

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import './PaymentPage.css';
 
 export default function PaymentPage() {
@@ -80,50 +81,68 @@ export default function PaymentPage() {
         {/* Top Navigation Bar */}
         <nav className="top-nav">
           <div className="nav-left">
-            <button className="icon-button home-icon" aria-label="Home">
+            <motion.button
+              className="icon-button home-icon"
+              aria-label="Home"
+              onClick={() => navigate('/consumer-landing')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
               </svg>
-            </button>
-          </div>
-          <div className="nav-center">
-            <button className="nav-button">Home</button>
-            <button className="nav-button">Rental Shop</button>
-            <button className="nav-button">Wishlist</button>
+              <span>Home</span>
+            </motion.button>
           </div>
           <div className="nav-right">
-            <div className="cart-icon-container">
-              <button className="icon-button cart-icon" aria-label="Shopping Cart">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.5L5 3H2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <motion.button
+              className="icon-button cart-icon"
+              aria-label="Shopping Cart"
+              onClick={() => navigate('/add-to-cart')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.5L5 3H2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                   <circle cx="10" cy="20" r="1.4" fill="currentColor"/>
                   <circle cx="17" cy="20" r="1.4" fill="currentColor"/>
-                </svg>
-              </button>
-              <span className="cart-badge">{cartItemCount}</span>
-            </div>
-            <div className="user-profile">
-              <button className="icon-button profile-icon" aria-label="User Profile">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-8 2.5-8 5v1h16v-1c0-2.5-3-5-8-5Z" fill="currentColor"/>
-                </svg>
-              </button>
-              <span className="username">{username}</span>
-            </div>
-            <button className="contact-button">Contact us</button>
+              </svg>
+              <span>Cart</span>
+            </motion.button>
+            <motion.button
+              className="icon-button profile-icon"
+              aria-label="User Profile"
+              onClick={() => navigate('/login')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-8 2.5-8 5v1h16v-1c0-2.5-3-5-8-5Z" fill="currentColor"/>
+              </svg>
+              <span>Profile</span>
+            </motion.button>
           </div>
         </nav>
 
         {/* Breadcrumb Navigation */}
         <div className="breadcrumb-nav">
           <p className="breadcrumb-text">Review Order &gt; Delivery &gt; Payment</p>
-          <h2 className="confirm-order-text">Confirm Order</h2>
+          <h2 className="confirm-order-text">Billing Details</h2>
         </div>
 
         <div className="container payment-container">
           <div className="payment-layout">
             {/* Left Column – Payment Method Form */}
             <div className="left-column">
+              <motion.button
+                className="btn"
+                onClick={() => {
+                  window.location.href = '/delivery';
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ marginBottom: '20px' }}
+              >&lt; Back to Delivery</motion.button>
               <h2>Choose a payment method</h2>
               <div className="payment-methods">
                 <label className="radio-label">

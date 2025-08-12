@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate
 import './AddToCartPage.css'; // Will create this CSS file next
 
 export default function AddToCartPage() {
@@ -100,6 +100,15 @@ export default function AddToCartPage() {
         transition={{ duration: 0.5 }}
       >
         <div className="container">
+          <motion.button
+            className="btn"
+            style={{ marginBottom: '20px', display: 'inline-block' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/consumer-landing')}
+          >
+            ← Back to Shopping
+          </motion.button>
           <h1>Your Cart</h1>
           <div className="add-to-cart-layout">
             {/* Left Column: Product List */}
@@ -109,14 +118,17 @@ export default function AddToCartPage() {
                 {cartItems.length === 0 ? (
                   <p>Your cart is empty.</p>
                 ) : (
-                  cartItems.map((item) => (
-                    <motion.div
-                      key={item.id}
-                      className="cart-item"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                  <AnimatePresence>
+                    {cartItems.map((item) => (
+                      <motion.div
+                        key={item.id}
+                        className="cart-item"
+                        layout
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 100 }}
+                        transition={{ duration: 0.3 }}
+                      >
                       <img src={item.imageUrl} alt={item.name} className="item-image" />
                       <div className="item-details">
                         <h3 className="item-name">{item.name}</h3>
@@ -165,7 +177,8 @@ export default function AddToCartPage() {
                         </motion.button>
                       </div>
                     </motion.div>
-                  ))
+                  ))}
+                  </AnimatePresence>
                 )}
               </div>
             </div>
@@ -189,7 +202,12 @@ export default function AddToCartPage() {
                 <div className="horizontal-line"></div>
                 <div className="summary-line total-line">
                   <span>Total:</span>
-                  <span>${total.toFixed(2)}</span>
+                  <motion.span
+                    key={total}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >${total.toFixed(2)}</motion.span>
                 </div>
               </div>
 
